@@ -1,4 +1,10 @@
-import { BytecodeAnalysis, ExplorerSmartContract, NormalizedTransaction, RankedKnowledgeDocument, RetrievalMode } from "@/lib/types";
+import {
+  BytecodeAnalysis,
+  ExplorerSmartContract,
+  NormalizedTransaction,
+  RankedKnowledgeDocument,
+  RetrievalMode
+} from "./types";
 
 type BuildContextInput = {
   address: string;

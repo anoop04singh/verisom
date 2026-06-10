@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
-import { appConfig } from "@/lib/config";
-import { getProvider } from "@/lib/rpc";
-import { VERISOM_ABI } from "@/lib/verisom-abi";
+import { appConfig } from "./config";
+import { getProvider } from "./rpc";
+import { VERISOM_ABI } from "./verisom-abi";
 
 const STATUS_LABELS: Record<number, string> = {
   0: "None",

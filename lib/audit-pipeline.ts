@@ -1,9 +1,9 @@
 import { ethers } from "ethers";
-import { analyzeBytecode } from "@/lib/bytecode-analyzer";
-import { buildContractContext } from "@/lib/context-builder";
-import { getAddressInfo, getRecentTransactions, getSmartContract } from "@/lib/explorer";
-import { buildKnowledgeBase } from "@/lib/rag";
-import { getDeployedBytecode } from "@/lib/rpc";
+import { analyzeBytecode } from "./bytecode-analyzer";
+import { buildContractContext } from "./context-builder";
+import { getAddressInfo, getRecentTransactions, getSmartContract } from "./explorer";
+import { buildKnowledgeBase } from "./rag";
+import { getDeployedBytecode } from "./rpc";
 
 type AnalyzeInput = {
   targetAddress: string;

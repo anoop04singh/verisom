@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { appConfig } from "@/lib/config";
+import { appConfig } from "./config";
 
 export function getProvider() {
   return new ethers.JsonRpcProvider(appConfig.rpcUrl);

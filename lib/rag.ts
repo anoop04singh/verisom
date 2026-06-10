@@ -1,5 +1,12 @@
-import { BytecodeAnalysis, ExplorerSmartContract, KnowledgeDocument, NormalizedTransaction, RankedKnowledgeDocument, RetrievalMode } from "@/lib/types";
-import { chunkText, excerpt } from "@/lib/utils";
+import {
+  BytecodeAnalysis,
+  ExplorerSmartContract,
+  KnowledgeDocument,
+  NormalizedTransaction,
+  RankedKnowledgeDocument,
+  RetrievalMode
+} from "./types";
+import { chunkText, excerpt } from "./utils";
 
 type BuildKnowledgeInput = {
   address: string;

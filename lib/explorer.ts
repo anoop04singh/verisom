@@ -1,5 +1,5 @@
-import { getExplorerApiV2BaseUrl } from "@/lib/config";
-import { AddressInfo, ExplorerSmartContract, NormalizedTransaction } from "@/lib/types";
+import { getExplorerApiV2BaseUrl } from "./config";
+import { AddressInfo, ExplorerSmartContract, NormalizedTransaction } from "./types";
 
 type BlockscoutAddressResponse = {
   creation_transaction_hash?: string | null;

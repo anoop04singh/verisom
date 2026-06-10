@@ -1,4 +1,4 @@
-import { BytecodeAnalysis } from "@/lib/types";
+import { BytecodeAnalysis } from "./types";
 
 type Opcode = {
   name: string;
