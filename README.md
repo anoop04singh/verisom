@@ -262,7 +262,7 @@ This is not a full decompiler. It is a practical bytecode evidence layer for pre
 
 Implemented in [lib/rag.ts](lib/rag.ts).
 
-VeriSom now uses fully local lexical retrieval. There is no Gemini embedding dependency.
+VeriSom uses fully local lexical retrieval.
 
 #### What goes into the knowledge base
 
@@ -390,21 +390,6 @@ Behavior:
 
 - `allowEnvPrivateKey: true`
 
-### HTTP MCP mode
-
-HTTP MCP is exposed through [app/api/mcp/route.ts](app/api/mcp/route.ts).
-
-Behavior:
-
-- `allowEnvPrivateKey: false`
-
-That distinction is important:
-
-- in local `stdio`, env keys belong to the user's own local connector
-- in HTTP mode, server env keys would belong to the deployed server, not to the calling agent
-
-So in HTTP mode the caller must explicitly provide `privateKey`.
-
 ## MCP tool contract
 
 ### Tool name
@@ -471,23 +456,6 @@ So in HTTP mode the caller must explicitly provide `privateKey`.
 }
 ```
 
-## Security model
-
-### Private keys
-
-VeriSom is designed so the easiest recommended path is also the safer one:
-
-- use local `stdio` MCP
-- keep `AGENT_PRIVATE_KEY` in the agent connector environment
-- never paste the key into chat
-- never send the key in every tool call unless you are intentionally using HTTP mode
-
-### Important distinction
-
-`AGENT_PRIVATE_KEY` fallback is only appropriate when the MCP process is running locally for the user.
-
-It is not appropriate for a shared remote server model.
-
 ### What the score means
 
 VeriSom is a contract interaction risk gate, not a formal verification engine and not a complete manual audit replacement.
@@ -498,64 +466,6 @@ Agents should use it as:
 - a contract selection filter
 - a reason to stop and ask for review when the output says `review` or `avoid`
 
-## API reference
-
-### `POST /api/analyze`
-
-Analyze a contract and build the context without submitting an on-chain request.
-
-Example:
-
-```json
-{
-  "targetAddress": "0x3203332165Fa483e317095DcBA7d56d2ED4E15bC",
-  "chainName": "Somnia Testnet",
-  "auditFocus": "reentrancy, access control, fund handling"
-}
-```
-
-Returns analysis artifacts including:
-
-- verification status
-- source mode
-- contract profile
-- recent transactions
-- local knowledge base preview
-- assembled `contractContext`
-
-### `POST /api/request`
-
-Submit a prepared contract context to the VeriSom contract.
-
-Example:
-
-```json
-{
-  "targetAddress": "0x3203332165Fa483e317095DcBA7d56d2ED4E15bC",
-  "chainName": "Somnia Testnet",
-  "contractContext": "prebuilt context string",
-  "privateKey": "0x..."
-}
-```
-
-### `GET /api/request/[requestId]`
-
-Read request status and score data.
-
-Query param:
-
-- `startBlock` optional
-
-### `GET /api/mcp/health`
-
-Health response:
-
-```json
-{
-  "status": "ok",
-  "service": "verisom-audit-mcp"
-}
-```
 
 ## Local development setup
 
@@ -599,7 +509,7 @@ VERISOM_POLL_INTERVAL_MS=5000
 ### Run the app
 
 ```powershell
-cmd /c npm run dev
+npm run dev
 ```
 
 Then open:
@@ -609,20 +519,9 @@ Then open:
 ### Build for production
 
 ```powershell
-cmd /c npm run build
-cmd /c npm run start
+npm run build
+npm run start
 ```
-
-## Claude Desktop setup
-
-This is the recommended way to use VeriSom as an MCP server.
-
-### Why this mode is preferred
-
-- easiest setup for end users
-- key stays local to the connector
-- no need to send `privateKey` in every tool call
-- direct synchronous score response
 
 ### Claude config example
 
@@ -655,20 +554,8 @@ Then restart Claude Desktop.
 
 ```text
 Use VeriSom to score this contract before interaction.
-
-targetAddress: 0x3203332165Fa483e317095DcBA7d56d2ED4E15bC
-intendedInteraction: swap 500 USDC for ETH
-auditFocus: reentrancy, access control, fund handling
+0x3203332165Fa483e317095DcBA7d56d2ED4E15bC
 ```
-
-## HTTP MCP usage
-
-If you are integrating over HTTP rather than local `stdio`:
-
-- endpoint: `http://localhost:3000/api/mcp`
-- health: `http://localhost:3000/api/mcp/health`
-
-In this mode, pass `privateKey` explicitly because env fallback is disabled.
 
 ## Example result shape
 
@@ -726,13 +613,6 @@ verisom-final/
 `-- README.md
 ```
 
-## Current design decisions
-
-- Embedding-based RAG was removed.
-- RAG now works fully locally using lexical ranking.
-- The MCP surface is intentionally minimal: one tool, one final score result.
-- The landing page is marketing-only; the main product value is the MCP service.
-- The agent receives evidence artifacts, not just a naked score.
 
 ## Limitations
 
@@ -768,5 +648,4 @@ cmd /c npm run mcp:stdio
 ```
 
 ## License
-
-Add your intended license here if the repository is meant to be open-source under a specific license.
+MIT
