@@ -1,7 +1,5 @@
 # VeriSom
 
-![VeriSom Logo](public/verisom-logo.png)
-
 On-chain contract safety infrastructure for autonomous agents.
 
 VeriSom gives an AI agent a contract safety score before it approves, swaps, transfers, or calls a smart contract. It gathers verified source code when available, falls back to bytecode analysis when it is not, adds recent on-chain activity, builds a local RAG evidence set, submits the assembled context to the VeriSom contract on Somnia, and returns a direct machine-usable verdict.
