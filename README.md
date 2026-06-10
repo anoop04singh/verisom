@@ -15,8 +15,6 @@ VeriSom is two things in one repository:
 1. A marketing landing page for the VeriSom MCP server.
 2. An agent-facing contract scoring service that exposes:
    - a local `stdio` MCP server for tools like Claude Desktop
-   - an HTTP MCP endpoint
-   - plain HTTP analysis and request/status routes
 
 The core job of the system is not to generate a long human audit report. It is to help an AI agent answer one operational question before interacting with a contract:
 
