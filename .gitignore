@@ -1,0 +1,89 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Next.js
+/.next/
+/out/
+/build/
+
+# Production
+/dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Coverage
+/coverage
+
+# Testing
+/.nyc_output
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+
+# Cache
+.cache/
+.turbo/
+
+# Package Manager
+.pnpm-store/
+.npm/
+
+# MCP Runtime Data
+*.sqlite
+*.sqlite3
+*.db
+
+# Local Wallet / Keys
+wallet.json
+keys.json
+private-key.txt
+secret.txt
+
+# Generated Reports
+reports/
+audit-results/
+exports/
+
+# Misc
+*.pem
+*.key
+*.crt
+
+# Keep example env
+!.env.example
