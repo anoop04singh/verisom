@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/anoop04singh-verisom-badge.png)](https://mseep.ai/app/anoop04singh-verisom)
+
 # VeriSom
 
 On-chain contract safety infrastructure for autonomous agents.
